@@ -12,6 +12,29 @@
 		</style>
 	</head>
 	<body>
+	<?php
+	$emailErr = "";
+	$email = "";
+
+	if (empty($_POST["email"])){
+		$emailErr = "Email is required";
+	} else {
+		$email = test_input($_POST["email"]);
+		// check if email address is well-formed
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+			$emailErr = "Invalid email format";
+		}
+	}
+
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+	?>
+
+
 		<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -36,10 +59,11 @@
 	
 	<div class="container" role="main" id="cl13-main">
 		<h3 class="page-header">Contact</h3>
-		<form class="form-group form-horizontal" method="post" action="mailto:chrisloomis13@chrisloomis13.com">
-			<input type="text" name="email" class="form-control" placeholder="Your E-mail Address" disabled>
-			<textarea class="form-control" name="msg" rows="13" placeholder="Your message" disabled></textarea>
-			<button type="submit" class="btn btn-default" value="Send" disabled>Send</button>
+		<form class="form-group form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+			<input type="text" name="email" class="form-control" placeholder="Your E-mail Address">
+			<span class="error">* <?php echo $emailErr;?></span>
+			<textarea class="form-control" name="msg" rows="13" placeholder="Your message"></textarea>
+			<button type="submit" class="btn btn-default" value="Send">Send</button>
 		</form>
 	</div><!-- <div class="container" role="main" id="cl13-main"> -->
 
