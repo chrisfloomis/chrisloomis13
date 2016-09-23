@@ -59,15 +59,17 @@
 	
 	<div class="container" role="main" id="cl13-main">
 		<h3 class="page-header">Contact</h3>
-		<form class="form-group form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-			<input type="text" name="email" class="form-control" placeholder="Your E-mail Address">
+		<form id="contact" class="form-group form-horizontal" method="post">
+			<input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+			<input type="text" id="email" name="email" class="form-control" placeholder="Your E-mail Address">
 			<span class="error">* <?php echo $emailErr;?></span>
-			<textarea class="form-control" name="msg" rows="13" placeholder="Your message"></textarea>
-			<button type="submit" class="btn btn-default" value="Send">Send</button>
+			<textarea id="msg" class="form-control" name="msg" rows="13" placeholder="Your message"></textarea>
+			<button id="send" type="submit" class="btn btn-default" value="Send">Send</button>
 		</form>
+		<span id="response"></span>
 	</div><!-- <div class="container" role="main" id="cl13-main"> -->
-
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/contact.js"></script>
 	</body>
 </html>
