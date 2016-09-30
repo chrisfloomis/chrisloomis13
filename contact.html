@@ -12,27 +12,6 @@
 		</style>
 	</head>
 	<body>
-	<?php
-	$emailErr = "";
-	$email = "";
-
-	if (empty($_POST["email"])){
-		$emailErr = "Email is required";
-	} else {
-		$email = test_input($_POST["email"]);
-		// check if email address is well-formed
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-			$emailErr = "Invalid email format";
-		}
-	}
-
-	function test_input($data) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-	}
-	?>
 
 
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -59,14 +38,16 @@
 	
 	<div class="container" role="main" id="cl13-main">
 		<h3 class="page-header">Contact</h3>
-		<form id="contact" class="form-group form-horizontal" method="post">
-			<input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
-			<input type="text" id="email" name="email" class="form-control" placeholder="Your E-mail Address">
-			<span class="error">* <?php echo $emailErr;?></span>
-			<textarea id="msg" class="form-control" name="msg" rows="13" placeholder="Your message"></textarea>
+		<form id="form" class="form-group form-horizontal" method="post" action="contact.php" >
+			<input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required />
+			<input type="text" id="email" name="email" class="form-control" placeholder="Your E-mail Address" required />
+			<textarea class="form-control" id="msg" name="msg" rows="13" placeholder="Your message" required></textarea>
 			<button id="send" type="submit" class="btn btn-default" value="Send">Send</button>
+			<input type="hidden" name="form_order" value="alpha" />
+			<input type="hidden" name="form_delivery" value="hourly_digest" />
+			<input type="hidden" name="form_format" value="html" />
 		</form>
-		<span id="response"></span>
+		<div id="response"></div>
 	</div><!-- <div class="container" role="main" id="cl13-main"> -->
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

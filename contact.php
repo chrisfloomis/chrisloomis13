@@ -1,12 +1,71 @@
-<?php	//https://webdesign.tutsplus.com/tutorials/building-a-bootstrap-contact-form-using-php-and-ajax--cms-23068
-$to = "chrisloomis13@chrisloomis13.com";
-$from = $_POST['email'];
-$msg = $_POST['msg'];
+<?php 
+//code copied from http://blog.teamtreehouse.com/create-ajax-contact-form
+	// Their comments:
+    // My modifications to mailer script from:
+    // http://blog.teamtreehouse.com/create-ajax-contact-form
+    // Added input sanitizing to prevent injection
 
-$txt = "Hello world!";
-$headers = "From: " . $from;
+    // Only process POST reqeusts.
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get the form fields and remove whitespace.
+        $name = strip_tags(trim($_POST["name"]));
+				$name = str_replace(array("\r","\n"),array(" "," "),$name);
+        $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+        $message = trim($_POST["msg"]);
 
-mail($to,$msg,$txt,$headers);
+        // Check that data was sent to the mailer.
+        if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Set a 400 (bad request) response code and exit.
+            http_response_code(400);
+            echo "Oops! There was a problem with your submission. Please complete the form and try again.";
+            exit;
+        }
 
-echo "{ email :" . $to . ", msg :" . $msg . "}";
+        // Set the recipient email address.
+        // FIXME: Update this to your desired email address.
+        $recipient = "christopherfrenchloomis@gmail.com";
+
+        // Set the email subject.
+        $subject = "New contact from $name";
+
+        // Build the email content.
+        $email_content = "Name: $name\n";
+        $email_content .= "Email: $email\n\n";
+        $email_content .= "Message:\n$message\n";
+
+        // Build the email headers.
+        $email_headers = "From: $name <$email>";
+
+        // Send the email.
+        if (mail($recipient, $subject, $email_content, $email_headers)) {
+            // Set a 200 (okay) response code.
+            http_response_code(200);
+            echo "Thank You! Your message has been sent.";
+        } else {
+            // Set a 500 (internal server error) response code.
+            http_response_code(500);
+            echo "Oops! Something went wrong and we couldn't send your message.";
+        }
+
+    } else {
+        // Not a POST request, set a 403 (forbidden) response code.
+        http_response_code(403);
+        echo "There was a problem with your submission, please try again.";
+    }
+
+
+
+/*
+header( "refresh:3;url=contact.html" );
+$to = "christopherfrenchloomis@gmail.com";
+$subject = "chrisloomis13 Contact Form";
+$message = "name: " . $_POST["name"] . "\n\n" . $_POST["msg"];
+$from = $_POST["email"];
+$headers = "From:" . $from;
+if(mail($to,$subject,$message,$headers)){
+	echo "<p>Mail Successfully Sent</p>";
+} else {
+	echo "<p>Error Sending</p>";
+}
+echo "<br><p>redirecting in 3s</p>"*/
 ?>

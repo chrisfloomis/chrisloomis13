@@ -1,42 +1,13 @@
-<?php
-
-// configure
-$from = 'Demo contact form <demo@domain.com>';
-$sendTo = 'chrisloomis13@chrisloomis13.com>';
-$subject = 'New message from contact form';
-$fields = array('name' => 'Name', 'surname' => 'Surname', 'phone' => 'Phone', 'email' => 'Email', 'message' => 'Message'); // array variable name => Text to appear in email
-$okMessage = 'Contact form successfully submitted. Thank you, I will get back to you soon!';
-$errorMessage = 'There was an error while submitting the form. Please try again later';
-
-// let's do the sending
-
-try
-{
-    $emailText = "You have new message from contact form\n=============================\n";
-
-    foreach ($_POST as $key => $value) {
-
-        if (isset($fields[$key])) {
-            $emailText .= "$fields[$key]: $value\n";
-        }
-    }
-
-    mail($sendTo, $subject, $emailText, "From: " . $from);
-
-    $responseArray = array('type' => 'success', 'message' => $okMessage);
+<?php 
+$to = "chrisloomis13@chrisloomis13.com";
+$subject = "Test mail";
+$message = "Hello! This is a simple test email message.";
+$from = "christopherfrenchloomis@gmail.com";
+$headers = "From:" . $from;
+if(mail($to,$subject,$message,$headers)){
+	echo "<p>Success</p>";
+} else {
+	echo "<p>Fail</p>";
 }
-catch (\Exception $e)
-{
-    $responseArray = array('type' => 'danger', 'message' => $errorMessage);
-}
-
-if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-    $encoded = json_encode($responseArray);
-    
-    header('Content-Type: application/json');
-    
-    echo $encoded;
-}
-else {
-    echo $responseArray['message'];
-}
+echo "Mail Sent.";
+?>
