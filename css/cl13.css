@@ -1,11 +1,107 @@
+/*
+	color theme - http://paletton.com/#uid=35f160kwi++bu++hX++++rd++kX
+*/
+
+body{
+	color: #003D6B;
+	background-color: #FFCB00;
+	border-color: #FF70B4;
+	font-family: "arial black", "sans-serif-bold";
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: #003D6B;  /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: #A9DAFF; /*BACKGROUND color for active*/
+background-color: #FF70B4;
+}
+
+.navbar-default {
+    background-color: #FFA4CF;
+    border-color: #FF70B4;
+}
+
+  .dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    color: #262626;
+   text-decoration: none;
+  background-color: #66CCFF;  /*change color of links in drop down here*/
+   }
+
+ .nav > li > a:hover,
+ .nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+  }
+
+
+  .navbar-default .navbar-nav > li > a {
+   color: #1097FF; /*Change active text color here*/
+    }
+
+#title{
+	color: #1097FF;
+}
+
 #cl13-main {
-				padding-top: 64px;
-			}
+	padding-top: 64px;
+	font-family: "arial", sans-serif;
+}
+
+.page-header {
+    border-color: #FF70B4;
+}
 
 .thumbnail{
+	background-color: #FFE270;
+	border-color: #FF70B4;
 	display: table;
 	table-layout: fixed;
 	height: 200px;
 	width: 100%;
 }
 
+.thumbnail a{
+color: #1097FF;
+background-color: #FFA4CF;
+border-color: #FF70B4;
+font-family: "arial black", "sans-serif-bold";
+}
+
+#form input,
+#form textarea{
+	color: #003D6B;
+	font-family: "arial", sans-serif;
+	background-color: #FFE270;
+	border-color: #FF70B4;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder{
+color: #1097FF !important;
+}
+ 
+input:-moz-placeholder,
+textarea:-moz-placeholder{ /* Firefox 18- */
+color: #1097FF !important;  
+}
+ 
+input::-moz-placeholder,
+textarea::-moz-placeholder{  /* Firefox 19+ */
+color: #1097FF !important;  
+}
+ 
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder{  
+color: #1097FF !important;  
+}
+
+#form button{
+color: #1097FF;
+background-color: #FFA4CF;
+border-color: #FF70B4;
+font-family: "arial black", "sans-serif-bold";
+}
