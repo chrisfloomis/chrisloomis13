@@ -1,0 +1,18 @@
+table{/*table border*/
+    border: solid 3px;
+    border-color: darkgray;
+    border-collapse: separate;
+    padding:3px;
+}
+
+th{/*table header cells made black*/
+	color: black;
+    border: solid 3px;
+    padding:10px;
+    border-color: forestgreen;
+}
+
+td{/*table data cells*/
+    border: solid 1px;
+    padding:10px;
+}

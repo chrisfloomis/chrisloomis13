@@ -1,0 +1,18 @@
+<h1>7 Day forecast for {{city}}</h1>
+<table>
+	<tr>
+		<th></th>
+		<th>Temperature</th>
+		<th>Humidity</th>
+		<th>Expect</th>
+	</tr>
+	{{#each forecast}}
+	<tr>
+		<th>Day {{this.daynum}}</th>
+		<td>{{this.temp}}</td>
+		<td>{{this.hum}}</td>
+		<td>{{this.des}}</td>
+		<td><img src="http://openweathermap.org/img/w/{{this.icon}}.png"></td>
+	</tr>
+  {{/each}}
+</table>
