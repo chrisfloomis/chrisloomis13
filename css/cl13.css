@@ -4,8 +4,7 @@
 
 body{
 	color: #003D6B;
-	background-color: #FFCB00;
-	border-color: #FF70B4;
+	background-color: #FFEDA4;
 	font-family: "arial black", "sans-serif-bold";
 }
 
@@ -58,10 +57,13 @@ background-color: #FF70B4;
 .thumbnail{
 	background-color: #FFE270;
 	border-color: #FF70B4;
+	border-width: 3px;
 	display: table;
 	table-layout: fixed;
 	height: 200px;
 	width: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .thumbnail a{
